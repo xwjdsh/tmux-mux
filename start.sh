@@ -4,12 +4,12 @@ main() {
 	str=$(tmuxinator list)
 	str=$(echo "${str##*$'\n'}")
 	projects=$(echo $str | tr -s ' ' '\n')
-	tmux_session=$(echo $projects | \
+	project=$(echo $projects | \
 		fzf --layout=reverse \
-			--prompt "session:" \
+			--prompt "project:" \
 			--preview 'tmuxinator debug {}' \
   ) || return
-	tmuxinator start "$tmux_session"
+	tmuxinator start "$project"
 }
 
 main

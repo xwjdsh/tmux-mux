@@ -18,6 +18,14 @@ get_tmux_option() {
 }
 
 get_projects() {
-	str=$(tmuxinator list)
-	echo "${str##*$'\n'}" | tr -s ' '
+	tmuxinator list | tail -n +2 | tr -s ' '
+}
+
+command_prompt() {
+	tmux command-prompt -p "($(get_projects)) project:" "split-window tmuxinator $1 %1"
+}
+
+select_project_fzf() {
+	projects=$(get_projects | tr ' ' '\n')
+  echo "$projects" | fzf-tmux --layout=reverse --prompt "project:" --preview 'tmuxinator debug {}'
 }

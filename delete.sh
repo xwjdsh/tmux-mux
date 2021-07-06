@@ -5,13 +5,13 @@ source "$CURRENT_DIR/helper.sh"
 
 main() {
 	if ! fzf_installed; then
-		command_prompt "start"
+		command_prompt "delete"
 		return
 	fi
 
 	project=$(select_project_fzf)
 	if [ -n "$project" ]; then
-		tmuxinator start "$project"
+		tmux split-window tmuxinator delete "$project"
 	fi
 }
 

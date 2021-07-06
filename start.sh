@@ -1,15 +1,16 @@
 #!/usr/bin/env bash
 
+CURRENT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+source "$CURRENT_DIR/helper.sh"
+
 main() {
-	str=$(tmuxinator list)
-	str=$(echo "${str##*$'\n'}")
-	projects=$(echo $str | tr -s ' ' '\n')
-	project=$(echo $projects | \
-		fzf --layout=reverse \
-			--prompt "project:" \
-			--preview 'tmuxinator debug {}' \
-  ) || return
-	tmuxinator start "$project"
+  projects=$(get_projects | tr ' ' '\n')
+  project=$(echo $projects | \
+    fzf --layout=reverse \
+        --prompt "project:" \
+        --preview 'tmuxinator debug {}' \
+    ) || return
+  tmuxinator start "$project"
 }
 
 main

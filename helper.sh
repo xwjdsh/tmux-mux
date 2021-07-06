@@ -1,6 +1,6 @@
 
-fzf_installed() {
-	if type fzf >/dev/null 2>&1; then
+fzf_tmux_installed() {
+	if type fzf-tmux >/dev/null 2>&1; then
 		return 0
 	fi
 	return 1

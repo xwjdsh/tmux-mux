@@ -1,7 +1,10 @@
 default_key_bindings_mux_start="'"
 tmux_option_mux_start="@mux-start"
 
-default_key_bindings_mux_delete="k"
+default_key_bindings_mux_stop="k"
+tmux_option_mux_stop="@mux-stop"
+
+default_key_bindings_mux_delete="K"
 tmux_option_mux_delete="@mux-delete"
 
 default_mux_disable_fzf="off"

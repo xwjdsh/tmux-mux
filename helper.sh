@@ -29,11 +29,21 @@ get_projects() {
 	tmuxinator list | tail -n +2 | tr -s ' '
 }
 
+get_line_split_projects() {
+	get_projects | tr ' ' '\n'
+}
+
+get_running_projects() {
+	local projects=$(get_line_split_projects)
+	local sessions=$(tmux ls -F '#{session_name}')
+	echo "$projects\n$sessions" | sort | uniq -d
+}
+
 command_prompt() {
 	tmux command-prompt -p "($(get_projects)) $1 project:" "split-window tmuxinator $1 %1"
 }
 
 select_project_fzf() {
-	projects=$(get_projects | tr ' ' '\n')
+	projects=${2:-$(get_line_split_projects)}
 	echo "$projects" | fzf-tmux --layout=reverse --prompt "$1" --preview 'tmuxinator debug {}'
 }

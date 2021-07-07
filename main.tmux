@@ -20,8 +20,17 @@ set_mux_delete_bindings() {
 	done
 }
 
+set_mux_stop_bindings() {
+	local key_bindings=$(get_tmux_option "$tmux_option_mux_stop" "$default_key_bindings_mux_stop")
+	local key
+	for key in $key_bindings; do
+		tmux bind-key $key run-shell -b "$CURRENT_DIR/stop.sh"
+	done
+}
+
 main() {
 	set_mux_start_bindings
+	set_mux_stop_bindings
 	set_mux_delete_bindings
 }
 

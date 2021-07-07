@@ -5,13 +5,13 @@ source "$CURRENT_DIR/helper.sh"
 
 main() {
 	if ! use_fzf_tmux; then
-		command_prompt "start"
+		command_prompt "stop"
 		return
 	fi
 
-	project=$(select_project_fzf "start project: ")
+	project=$(select_project_fzf "stop project: " "$(get_running_projects)")
 	if [ -n "$project" ]; then
-		tmuxinator start $project 
+		tmuxinator stop $project 
 	fi
 }
 

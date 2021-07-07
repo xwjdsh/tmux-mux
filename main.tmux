@@ -2,13 +2,7 @@
 
 CURRENT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 source "$CURRENT_DIR/helper.sh"
-
-default_key_bindings_mux_start="'"
-tmux_option_mux_start="@mux-start"
-
-default_key_bindings_mux_delete="k"
-tmux_option_mux_delete="@mux-delete"
-
+source "$CURRENT_DIR/options.sh"
 
 set_mux_start_bindings() {
 	local key_bindings=$(get_tmux_option "$tmux_option_mux_start" "$default_key_bindings_mux_start")
@@ -25,7 +19,6 @@ set_mux_delete_bindings() {
 		tmux bind-key $key run-shell -b "$CURRENT_DIR/delete.sh"
 	done
 }
-
 
 main() {
 	set_mux_start_bindings

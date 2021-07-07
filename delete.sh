@@ -4,7 +4,7 @@ CURRENT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 source "$CURRENT_DIR/helper.sh"
 
 main() {
-	if ! fzf_tmux_installed; then
+	if ! use_fzf_tmux; then
 		command_prompt "delete"
 		return
 	fi

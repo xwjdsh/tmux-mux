@@ -1,5 +1,13 @@
+CURRENT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+source "$CURRENT_DIR/options.sh"
 
-fzf_tmux_installed() {
+
+use_fzf_tmux() {
+	local disable_fzf=$(get_tmux_option "$tmux_option_mux_disable_fzf" "$default_mux_disable_fzf")
+	if [ "$disable_fzf" == "on" ]; then
+		return 1
+	fi
+
 	if type fzf-tmux >/dev/null 2>&1; then
 		return 0
 	fi

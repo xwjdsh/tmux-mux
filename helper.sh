@@ -22,10 +22,10 @@ get_projects() {
 }
 
 command_prompt() {
-	tmux command-prompt -p "($(get_projects)) project:" "split-window tmuxinator $1 %1"
+	tmux command-prompt -p "($(get_projects)) $1 project:" "split-window tmuxinator $1 %1"
 }
 
 select_project_fzf() {
 	projects=$(get_projects | tr ' ' '\n')
-  echo "$projects" | fzf-tmux --layout=reverse --prompt "project:" --preview 'tmuxinator debug {}'
+	echo "$projects" | fzf-tmux --layout=reverse --prompt "$1" --preview 'tmuxinator debug {}'
 }

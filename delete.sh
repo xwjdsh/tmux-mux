@@ -9,9 +9,9 @@ main() {
 		return
 	fi
 
-	project=$(select_project_fzf)
+	project=$(select_project_fzf "delete project: ")
 	if [ -n "$project" ]; then
-		tmux split-window tmuxinator delete "$project"
+		tmux split-window tmuxinator delete $project
 	fi
 }
 

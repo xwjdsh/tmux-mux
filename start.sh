@@ -9,9 +9,9 @@ main() {
 		return
 	fi
 
-	project=$(select_project_fzf)
+	project=$(select_project_fzf "start project: ")
 	if [ -n "$project" ]; then
-		tmuxinator start "$project"
+		tmuxinator start $project
 	fi
 }
 

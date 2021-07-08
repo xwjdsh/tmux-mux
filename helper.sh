@@ -39,8 +39,13 @@ get_running_projects() {
 	echo "$projects\n$sessions" | sort | uniq -d
 }
 
+get_space_split_running_projects() {
+	get_running_projects | tr '\n' ' ' | xargs
+}
+
 command_prompt() {
-	tmux command-prompt -p "($(get_projects)) $1 project:" "split-window tmuxinator $1 %1"
+	projects=${2:-$(get_projects)}
+	tmux command-prompt -p "($projects) $1 project:" "split-window tmuxinator $1 %1"
 }
 
 select_project_fzf() {

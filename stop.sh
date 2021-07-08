@@ -5,7 +5,7 @@ source "$CURRENT_DIR/helper.sh"
 
 main() {
 	if ! use_fzf_tmux; then
-		command_prompt "stop"
+		command_prompt "stop" "$(get_space_split_running_projects)"
 		return
 	fi
 

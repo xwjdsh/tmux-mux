@@ -1,7 +1,7 @@
 default_key_bindings_mux_start="'"
 tmux_option_mux_start="@mux-start"
 
-default_key_bindings_mux_stop="K"
+default_key_bindings_mux_stop="Q"
 tmux_option_mux_stop="@mux-stop"
 
 default_key_bindings_mux_delete="X"
